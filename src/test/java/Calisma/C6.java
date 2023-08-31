@@ -34,7 +34,6 @@ public class C6 {
         String url="https://jsonplaceholder.typicode.com/posts";
 
         JSONObject jsonObject=new JSONObject();
-
         jsonObject.put("title","API");
         jsonObject.put("body","API ogrenmek ne guzel");
         jsonObject.put("userId",10);

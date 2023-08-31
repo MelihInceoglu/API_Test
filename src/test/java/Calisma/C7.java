@@ -1,17 +1,20 @@
-package API_Testing;
+package Calisma;
+
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 import org.json.JSONObject;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class C10_Post_JsonPathIleBodyTesti {
+public class C7 {
 
 
-    /*
+     /*
             C09_Post_JsonPathIleBodyTesti
         https://restful-booker.herokuapp.com/booking url’ine asagidaki body’ye sahip bir POST
         request gonderdigimizde
@@ -26,6 +29,10 @@ public class C10_Post_JsonPathIleBodyTesti {
                             },
         “additionalneeds” : “wi-fi”
         }
+
+
+
+
         donen Response’un,
         status code’unun 200,
         ve content type’inin application-json, ve response body’sindeki
@@ -38,46 +45,30 @@ public class C10_Post_JsonPathIleBodyTesti {
 
 
     @Test
-    public void jsonPath() {
+    public void posttesti() {
+
 
         String url = "https://restful-booker.herokuapp.com/booking";
 
-        /*
-        {
-        “firstname” : “Ahmet”,
-        “lastname” : “Bulut”,
-         “totalprice” : 500,
-         “depositpaid” : false,
-         “bookingdates” : {
-                             “checkin” : “2021-06-01”,
-                            “checkout” : “2021-06-10”
-                            },
-        “additionalneeds” : “wi-fi”
-        }
-         */
+        JSONObject icJson = new JSONObject();
+
+        icJson.put("checkin" , "2021-06-01");
+        icJson.put("checkout" , "2021-06-10");
 
 
-        JSONObject reqBody1 = new JSONObject();
-        reqBody1.put("checkin", "2021-06-01");
-        reqBody1.put("checkout", "2021-06-10");
+        JSONObject disJson=new JSONObject();
+        disJson.put("firstname","Ahmet");
+        disJson.put("lastname","Bulut");
+        disJson.put("totalprice",500);
+        disJson.put("depositpaid",false);
+        disJson.put("bookingdates",icJson);
+        disJson.put("additionalneeds","wi-fi");
 
 
-        JSONObject reqBody2 = new JSONObject();
-        reqBody2.put("firstname", "Ahmet");
-        reqBody2.put("lastname", "Bulut");
-        reqBody2.put("totalprice", 500);
-        reqBody2.put("depositpaid", false);
-        reqBody2.put("bookingdates", reqBody1);
-        reqBody2.put("additionalneeds", "wi-fi");
-
-
-        Response response = given()
+        Response response=given()
                 .contentType(ContentType.JSON)
                 .when()
-                .body(reqBody2.toString()).post(url);
-
-
-        //Assertion işlemi
+                .body(disJson.toString()).post(url);
 
 
         response.then().assertThat()
@@ -90,6 +81,10 @@ public class C10_Post_JsonPathIleBodyTesti {
                         "booking.bookingdates.checkin",equalTo("2021-06-01"),
                         "booking.bookingdates.checkout",equalTo("2021-06-10"),
                         "booking.additionalneeds",equalTo("wi-fi"));
+
+
+
+
 
 
     }
