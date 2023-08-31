@@ -1,11 +1,13 @@
-package API_Testing;
+package Calisma;
 
 import io.restassured.response.Response;
+import org.apache.http.StatusLine;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class C1_Get_ApiSorgulama {
+public class C1 {
 
     /*
         C1_Get_ApiSorgulama
@@ -23,28 +25,21 @@ public class C1_Get_ApiSorgulama {
     //4 - Assertion işlemi yapılacak
 
 
-
     @Test
     public void get01(){
 
-        // 1-URL belirlenip Url e gidilecektir
+        String url="https://restful-booker.herokuapp.com/booking/10";
+        Response response =given().when().get(url);
+        //response.prettyPrint();
 
-        String url = "https://restful-booker.herokuapp.com/booking/83";
-        // 2-  Expected Data belirlenecek
-        // 3 - Actual Data belirlenecek
-
-        Response response=given().when().get(url);
-
-        response.prettyPrint(); // yazdırır
-
-
-
-
-
-
+        response
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .contentType("application/json; charset=utf-8")
+                .header("Server","Cowboy")
+                .statusLine("HTTP/1.1 200 OK");
 
     }
-
-
 
 }
