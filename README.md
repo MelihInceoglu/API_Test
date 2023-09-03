@@ -2,7 +2,7 @@
 
 "API testing" is a type of testing used to verify the data and processes behind a software application. These tests are designed to retrieve, send, and process data using the application's programming interface (API). API tests are used to ensure that an application is functioning correctly and producing the expected results.
 
-# Here is an example of how to perform an API test using Selenium TestNG:
+Here is an example of how to perform an API test using Selenium TestNG:
 
 ### 1 - Prepare the Environment: The first step is to set up the environment necessary for API testing, including the installation of required libraries such as Selenium and TestNG.
 
