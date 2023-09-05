@@ -28,6 +28,7 @@ public class C2_Get_ApiSorgulama {
         Response response=given().when().get(url);
 
 
+
         System.out.println("Status Code : "+response.getStatusCode());
         System.out.println("Content Type : "+ response.getContentType());
         System.out.println("Header : "+response.getHeader("Server"));
